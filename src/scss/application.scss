@@ -1,0 +1,63 @@
+@import "./variables";
+@import "./functions";
+
+/*
+ * General styles.
+ * Not necessary for the component to work
+*/
+
+/// Convert to EMs function
+/// @param {number} target - The value to be converted
+/// @param {number} context [$msuxf-font-size] The base font size
+/// @return {em} value
+@function toem($target, $context: 16px) {
+	@if $target==0 {
+		@return 0
+	}
+
+	@return $target / $context+0em;
+}
+
+body {
+	background: linear-gradient(to bottom, $color-red, $color-peach);
+	font-family: 'Roboto Slab', serif;
+	height: 100vh;
+	text-align: center;
+	width: 100vw;
+}
+
+.wrapper {
+	left: 50%;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 700px;
+
+	h1 {
+		color: $color-white;
+		font-size: 56px;
+		font-weight: 400;
+		margin-bottom: 75px;
+	}
+}
+
+.rating-holder {
+	background-color: $color-white;
+	border-radius: toem(25px);
+	box-sizing: border-box;
+	display: inline-block;
+	margin: 0 10px;
+	padding: toem(10px) toem(30px);
+}
+
+.c-rating {
+	@include c-rating(toem(20px), button, clickable);
+
+	&--small {
+		font-size: 50%;
+	}
+
+	&--big {
+		font-size: 150%;
+	}
+}
